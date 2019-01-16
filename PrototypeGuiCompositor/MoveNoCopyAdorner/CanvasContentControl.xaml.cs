@@ -38,14 +38,31 @@ namespace MoveNoCopyAdorner
             DependencyProperty.Register("Content2", typeof(object), typeof(CanvasContentControl), new PropertyMetadata(null));
 
 
-        public MoveScaleAdorner CCCAdorner
+        public MoveScaleAdorner cccMoveScaleAdorner
         {
-            get { return (MoveScaleAdorner)GetValue(CCCAdornerProperty); }
-            set { SetValue(CCCAdornerProperty, value); }
+            get { return (MoveScaleAdorner)GetValue(cccMoveScaleAdornerProperty); }
+            set { SetValue(cccMoveScaleAdornerProperty, value); }
         }
 
-        public static readonly DependencyProperty CCCAdornerProperty =
-            DependencyProperty.Register("CCCAdornerCCAdorner", typeof(MoveScaleAdorner), typeof(CanvasContentControl), new PropertyMetadata(null));
+        public static readonly DependencyProperty cccMoveScaleAdornerProperty =
+            DependencyProperty.Register("cccMoveScaleAdorner", typeof(MoveScaleAdorner), typeof(CanvasContentControl), new PropertyMetadata(null));
+
+
+
+
+        public int cccRotateAdorner
+        {
+            get { return (int)GetValue(cccRotateAdornerProperty); }
+            set { SetValue(cccRotateAdornerProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for cccRotateAdorner.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty cccRotateAdornerProperty =
+            DependencyProperty.Register("cccRotateAdorner", typeof(rotateAdorner), typeof(CanvasContentControl), new PropertyMetadata(0));
+
+
+
+
 
         public void OnLoaded(object sender, RoutedEventArgs e)
         {
@@ -59,7 +76,7 @@ namespace MoveNoCopyAdorner
             _myCanvasC.PreviewMouseLeftButtonUp += mouseEventHandler.MyCanvas_PreviewMouseLeftButtonUp;
             PreviewKeyDown += mouseEventHandler.window1_PreviewKeyDown;
 
-            CCCAdorner = new MoveScaleAdorner(this);
+            cccMoveScaleAdorner = new MoveScaleAdorner(this);
             AdornerLayer adornerLayer = AdornerLayer.GetAdornerLayer(this);
             adornerLayer.Visibility = Visibility.Visible;
 

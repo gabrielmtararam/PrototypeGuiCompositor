@@ -13,7 +13,7 @@ namespace MoveNoCopyAdorner
     public class rotateAdorner : Adorner
     {
         private VisualCollection visualChildren;
-        MoveScaleAdornerVisual customControl;
+        RotateAdornerVisual customControl;
         UIElement _adornedElement;
 
         public rotateAdorner(UIElement adornedElement)
@@ -29,7 +29,7 @@ namespace MoveNoCopyAdorner
             };
             brush.BeginAnimation(Brush.OpacityProperty, animation);
             visualChildren = new VisualCollection(this);
-            customControl = new MoveScaleAdornerVisual();
+            customControl = new RotateAdornerVisual();
             customControl.DataContext = _adornedElement;
             visualChildren.Add(customControl);
 
