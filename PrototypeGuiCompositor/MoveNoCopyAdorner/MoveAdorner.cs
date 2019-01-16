@@ -30,7 +30,6 @@ namespace MoveNoCopyAdorner
             drawingContext.DrawLine(dashed_pen, new Point(adornedElementRect.TopRight.X +3, adornedElementRect.TopRight.Y -3 ), new Point(adornedElementRect.BottomRight.X + 3, adornedElementRect.BottomRight.Y + 3));
             drawingContext.DrawLine(dashed_pen, new Point(adornedElementRect.TopLeft.X - 3, adornedElementRect.TopLeft.Y - 3), new Point(adornedElementRect.BottomLeft.X - 3, adornedElementRect.BottomLeft.Y + 3));
             drawingContext.DrawLine(dashed_pen, new Point(adornedElementRect.BottomLeft.X, adornedElementRect.BottomLeft.Y + 3), new Point(adornedElementRect.BottomRight.X, adornedElementRect.BottomRight.Y + 3));
-
         }
     }
 }

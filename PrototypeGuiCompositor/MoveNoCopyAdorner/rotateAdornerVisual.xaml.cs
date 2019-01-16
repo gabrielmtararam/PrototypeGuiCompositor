@@ -17,10 +17,11 @@ using System.Windows.Shapes;
 
 namespace MoveNoCopyAdorner
 {
-    public partial class MoveScaleAdornerVisual : UserControl
+    public partial class RotateAdornerVisual : UserControl
     {
-        ScaleEventHandler scaleEventHandler;
-        public MoveScaleAdornerVisual()
+        RotateEventHandler rotateEventHandler;
+
+        public RotateAdornerVisual()
         {
             InitializeComponent();
         }
@@ -28,31 +29,31 @@ namespace MoveNoCopyAdorner
             DependencyObject _myCanvas = VisualTreeHelper.GetParent(this.DataContext as FrameworkElement);
             Canvas _myCanvasC = _myCanvas as Canvas;
             Console.WriteLine($"canvas do data context {_myCanvas}");
-            scaleEventHandler = new ScaleEventHandler(this.DataContext as FrameworkElement, _myCanvasC);
+            rotateEventHandler = new RotateEventHandler(this.DataContext as FrameworkElement, _myCanvasC);
         }
             private void OnDragDelta(object sender, DragDeltaEventArgs e)
         {
-            scaleEventHandler.OnDragDelta(sender, e);
+            rotateEventHandler.OnDragDelta(sender, e);
         }
 
         private void OnDragStarted(object sender, DragStartedEventArgs e)
         {
-            scaleEventHandler.OnDragStarted(sender, e);
+            rotateEventHandler.OnDragStarted(sender, e);
         }
 
         private void OnDragCompleted(object sender, DragCompletedEventArgs e)
         {
-            scaleEventHandler.OnDragCompleted(sender, e);
+            rotateEventHandler.OnDragCompleted(sender, e);
         }
         public void Move_MouseEnter(object sender, MouseEventArgs e)
         {
 
-            scaleEventHandler.Move_MouseEnter(sender, e);
+            rotateEventHandler.Move_MouseEnter(sender, e);
         }
         public void Move_MouseLeave(object sender, MouseEventArgs e)
         {
 
-            scaleEventHandler.Move_MouseLeave(sender, e);
+            rotateEventHandler.Move_MouseLeave(sender, e);
         }
 
     }

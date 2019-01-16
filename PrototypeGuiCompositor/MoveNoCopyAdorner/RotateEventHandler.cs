@@ -10,12 +10,12 @@ using System.Windows.Input;
 
 namespace MoveNoCopyAdorner
 {
-    class ScaleEventHandler
+    class RotateEventHandler
     {
         FrameworkElement parentPanel;
         Canvas canvas;
 
-        public ScaleEventHandler(FrameworkElement _parentPanel, Canvas _canvas)
+        public RotateEventHandler(FrameworkElement _parentPanel, Canvas _canvas)
         {
             parentPanel = _parentPanel;
             canvas = _canvas; 

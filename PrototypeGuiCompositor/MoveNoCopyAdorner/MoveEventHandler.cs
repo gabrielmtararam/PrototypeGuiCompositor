@@ -97,16 +97,16 @@ namespace MoveNoCopyAdorner
             var layer = AdornerLayer.GetAdornerLayer(_MovedElement);
             layer.Add(_overlayElement);
         }
-      public double getNextOffset(double startPosition, double DistanceFromCorner, double MovedSize, double CanvasSize, double mousePosrelativeToMoved, double MousePosRelativeToCanvas, double CSOriginalDistanceToOutterCorner, double previousMouseCanvasPosition)
+      public double getNextOffset(double startPosition, double DistanceFromCorner, double MovedSize, double CanvasSize, double mousePosrelativeToMoved, double MousePosRelativeToCanvas, double previousMouseCanvasPosition)
         {
            if (mousePosrelativeToMoved > MovedSize)
                 mousePosrelativeToMoved = MovedSize;
             else if (mousePosrelativeToMoved < 0)
                 mousePosrelativeToMoved = 0;
 
-            var position = CSOriginalDistanceToOutterCorner + DistanceFromCorner;
-            var rightDistance = CSOriginalDistanceToOutterCorner + DistanceFromCorner + MovedSize;
-            var maxLeftOfset = CSOriginalDistanceToOutterCorner - mousePosrelativeToMoved;
+            var position = CanvasSize + DistanceFromCorner;
+            var rightDistance = CanvasSize + DistanceFromCorner + MovedSize;
+            var maxLeftOfset = CanvasSize - mousePosrelativeToMoved;
 
             if (DistanceFromCorner - MovedSize < 0)
             {
@@ -123,7 +123,7 @@ namespace MoveNoCopyAdorner
             {
                 if (mousePosrelativeToMoved + MousePosRelativeToCanvas <= CanvasSize)
                     return (MousePosRelativeToCanvas - MovedSize / 2);
-                return (CSOriginalDistanceToOutterCorner - MovedSize);
+                return (CanvasSize - MovedSize);
             }
             else if (DistanceFromCorner == 0)
             {
@@ -140,8 +140,8 @@ namespace MoveNoCopyAdorner
         {
             FrameworkElement _FrMovedElement = _MovedElement as FrameworkElement;
 
-            Canvas.SetTop(_MovedElement, getNextOffset(_originalTop, Canvas.GetTop(_MovedElement), _FrMovedElement.ActualHeight, _myCanvas.ActualHeight, Mouse.GetPosition(_MovedElement).Y, Mouse.GetPosition(_myCanvas).Y, _myCanvas.ActualHeight, _previousMousePosition.Y));
-            Canvas.SetLeft(_MovedElement, getNextOffset(_originalLeft, Canvas.GetLeft(_MovedElement), _FrMovedElement.ActualWidth, _myCanvas.ActualWidth, Mouse.GetPosition(_MovedElement).X, Mouse.GetPosition(_myCanvas).X, _myCanvas.ActualWidth, _previousMousePosition.X));
+            Canvas.SetTop(_MovedElement, getNextOffset(_originalTop, Canvas.GetTop(_MovedElement), _FrMovedElement.ActualHeight, _myCanvas.ActualHeight, Mouse.GetPosition(_MovedElement).Y, Mouse.GetPosition(_myCanvas).Y, _previousMousePosition.Y));
+            Canvas.SetLeft(_MovedElement, getNextOffset(_originalLeft, Canvas.GetLeft(_MovedElement), _FrMovedElement.ActualWidth, _myCanvas.ActualWidth, Mouse.GetPosition(_MovedElement).X, Mouse.GetPosition(_myCanvas).X, _previousMousePosition.X));
             _previousMousePosition = Mouse.GetPosition(_myCanvas);
         }
         public void MyCanvas_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)

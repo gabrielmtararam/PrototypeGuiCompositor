@@ -33,16 +33,11 @@
                          Margin="1"
                          Stroke="White"/>-->
         
-        <Line X1="0" Y1="0" X2="0" Y2="20"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
-                    Margin="0,-19,0,0"
-                    Stroke="#FFC8C8C8"
-              StrokeThickness="1"
-              />
-        <Ellipse   Style="{StaticResource ThumbCorner}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-1,-25,0,0"/>
+        
 
-            <Rectangle  Style="{StaticResource ThumbCorner}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <!--<Ellipse   Style="{StaticResource ThumbCorner}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-1,-25,0,0"/>-->
+        
+        <Rectangle  Style="{StaticResource ThumbCorner}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
         <Rectangle  Style="{StaticResource ThumbCorner}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         <Rectangle  Style="{StaticResource ThumbCorner}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
@@ -53,43 +48,46 @@
         <Rectangle  Style="{StaticResource ThumbCorner}" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
         <Rectangle  Style="{StaticResource ThumbCorner}" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
 
+        <Rectangle  Style="{StaticResource ThumbCorner}" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+
         <Thumb  HorizontalAlignment="Right" VerticalAlignment="Bottom"  x:Name="myThumb" Opacity="0" Background="Transparent" DragDelta="OnDragDelta" 
-            DragStarted="OnDragStarted" DragCompleted="OnDragCompleted"  Height="15" Width="15" Margin="-6"  
+            DragStarted="OnDragStarted" DragCompleted="OnDragCompleted"  Height="15" Width="15" Margin="-6"  MouseEnter="Move_MouseEnter"   MouseLeave="Move_MouseLeave"
           />
 
 
 
 
         <Thumb   HorizontalAlignment="Center" VerticalAlignment="Top"  x:Name="myThumb22" Opacity="0" Background="Transparent" DragDelta="OnDragDelta" 
-            DragStarted="OnDragStarted" DragCompleted="OnDragCompleted"  Height="15" Width="15" Margin="-6"  
+            DragStarted="OnDragStarted" DragCompleted="OnDragCompleted"  Height="15" Width="15" Margin="-6"   MouseEnter="Move_MouseEnter"   MouseLeave="Move_MouseLeave"
           />
 
         <Thumb  HorizontalAlignment="Center" VerticalAlignment="Bottom"  x:Name="myThumb33" Opacity="0" Background="Transparent" DragDelta="OnDragDelta" 
-            DragStarted="OnDragStarted" DragCompleted="OnDragCompleted"  Height="15" Width="15"  Margin="-6"   
+            DragStarted="OnDragStarted" DragCompleted="OnDragCompleted"  Height="15" Width="15"  Margin="-6"    MouseEnter="Move_MouseEnter"   MouseLeave="Move_MouseLeave"
           />
 
 
 
 
         <Thumb  HorizontalAlignment="Right" VerticalAlignment="Center"  x:Name="myThumb2" Opacity="0" Background="Transparent" DragDelta="OnDragDelta" 
-            DragStarted="OnDragStarted" DragCompleted="OnDragCompleted"  Height="15" Width="15"  Margin="-6"   
+            DragStarted="OnDragStarted" DragCompleted="OnDragCompleted"  Height="15" Width="15"  Margin="-6"    MouseEnter="Move_MouseEnter"   MouseLeave="Move_MouseLeave"
           />
 
         <Thumb  HorizontalAlignment="Right" VerticalAlignment="top"  x:Name="myThumb3" Opacity="0" Background="Transparent" DragDelta="OnDragDelta" 
-            DragStarted="OnDragStarted" DragCompleted="OnDragCompleted"  Height="15" Width="15"  Margin="-6"   
+            DragStarted="OnDragStarted" DragCompleted="OnDragCompleted"  Height="15" Width="15"  Margin="-6"   MouseEnter="Move_MouseEnter"   MouseLeave="Move_MouseLeave" 
           />
 
 
         <Thumb  HorizontalAlignment="Left" VerticalAlignment="Bottom"  x:Name="myThumb4" Opacity="0" Background="Transparent" DragDelta="OnDragDelta" 
-            DragStarted="OnDragStarted" DragCompleted="OnDragCompleted"  Height="15" Width="15"  Margin="-6"   
+            DragStarted="OnDragStarted" DragCompleted="OnDragCompleted"  Height="15" Width="15"  Margin="-6"   MouseEnter="Move_MouseEnter"   MouseLeave="Move_MouseLeave"
           />
 
         <Thumb  HorizontalAlignment="Left" VerticalAlignment="Center"  x:Name="myThumb5"   Opacity="0" Background="Transparent" DragDelta="OnDragDelta" 
-            DragStarted="OnDragStarted" DragCompleted="OnDragCompleted"  Height="15" Width="15"  Margin="-6"   
+            DragStarted="OnDragStarted" DragCompleted="OnDragCompleted"  Height="15" Width="15"  Margin="-6"   MouseEnter="Move_MouseEnter"   MouseLeave="Move_MouseLeave"
           />
 
         <Thumb  HorizontalAlignment="Left" VerticalAlignment="top"  x:Name="myThumb6" Opacity="0" Background="Transparent" DragDelta="OnDragDelta" 
-            DragStarted="OnDragStarted" DragCompleted="OnDragCompleted"  Height="15" Width="15"  Margin="-6"   
+            DragStarted="OnDragStarted" DragCompleted="OnDragCompleted"  Height="15" Width="15"  Margin="-6"   MouseEnter="Move_MouseEnter"   MouseLeave="Move_MouseLeave"
           />
 
     </Grid>

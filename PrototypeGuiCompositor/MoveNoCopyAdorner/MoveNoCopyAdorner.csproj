@@ -55,6 +55,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BoundCalculator.cs" />
+    <Compile Include="rotateAdorner.cs" />
+    <Compile Include="rotateAdornerVisual.xaml.cs">
+      <DependentUpon>rotateAdornerVisual.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RotateEventHandler.cs" />
     <Compile Include="ScaleEventHandler.cs" />
     <Compile Include="MoveAdorner.cs" />
     <Compile Include="MoveEventHandler.cs" />
@@ -81,6 +87,10 @@
     <Page Include="CanvasContentControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="rotateAdornerVisual.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="MoveScaleAdornerVisual.xaml">
       <SubType>Designer</SubType>

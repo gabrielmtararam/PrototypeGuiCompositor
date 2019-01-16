@@ -15,7 +15,6 @@ namespace MoveNoCopyAdorner
         private readonly Rectangle _child;
         private double _leftOffset;
         private double _topOffset;
-        // Be sure to call the base class constructor.
         public SimpleCircleAdorner(UIElement adornedElement)
             : base(adornedElement)
         {
