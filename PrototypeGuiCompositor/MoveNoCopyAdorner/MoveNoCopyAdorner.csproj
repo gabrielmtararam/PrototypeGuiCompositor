@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ScaleEventHandler.cs" />
     <Compile Include="MoveAdorner.cs" />
     <Compile Include="MoveEventHandler.cs" />
     <Compile Include="MoveScaleAdornerVisual.xaml.cs">
