@@ -56,12 +56,8 @@ namespace MoveNoCopyAdorner
             myLine.StrokeThickness = 2;
             canvas.Children.Add(myLine);
 
-
             var y = -(_currentPos.Y - p.Y + s.ActualHeight / 2);
             var x = _currentPos.X - p.X + s.ActualWidth / 2;
-            //  y = Math.Abs(y);
-            //  x = Math.Abs(x);
-
 
             double tg = y / x;
             double radians = Math.Atan(tg);
@@ -87,12 +83,13 @@ namespace MoveNoCopyAdorner
 
             _origin = parentPanel.TranslatePoint(new Point(0, 0), canvas);
             _origin.X += parentPanel.ActualWidth / 2;
-            _origin.Y += parentPanel.ActualHeight;
+            _origin.Y += parentPanel.ActualHeight/2;
 
         }
 
         public void OnDragCompleted(object sender, DragCompletedEventArgs e)
         {
+            canvas.Children.Remove(myLine);
             var s = sender as Thumb;
             s.Opacity = 0;
         }
