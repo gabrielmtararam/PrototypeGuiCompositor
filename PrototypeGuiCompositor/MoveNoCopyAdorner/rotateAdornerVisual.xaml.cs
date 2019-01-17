@@ -38,7 +38,7 @@ namespace MoveNoCopyAdorner
 
         private void OnDragStarted(object sender, DragStartedEventArgs e)
         {
-            rotateEventHandler.OnDragStarted(sender, e);
+           
         }
 
         private void OnDragCompleted(object sender, DragCompletedEventArgs e)

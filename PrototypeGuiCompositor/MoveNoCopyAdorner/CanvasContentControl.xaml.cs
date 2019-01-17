@@ -50,15 +50,15 @@ namespace MoveNoCopyAdorner
 
 
 
-        public int cccRotateAdorner
+        public rotateAdorner cccRotateAdorner
         {
-            get { return (int)GetValue(cccRotateAdornerProperty); }
+            get { return (rotateAdorner)GetValue(cccRotateAdornerProperty); }
             set { SetValue(cccRotateAdornerProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for cccRotateAdorner.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty cccRotateAdornerProperty =
-            DependencyProperty.Register("cccRotateAdorner", typeof(rotateAdorner), typeof(CanvasContentControl), new PropertyMetadata(0));
+            DependencyProperty.Register("cccRotateAdorner", typeof(rotateAdorner), typeof(CanvasContentControl), new PropertyMetadata(null));
 
 
 
@@ -77,6 +77,7 @@ namespace MoveNoCopyAdorner
             PreviewKeyDown += mouseEventHandler.window1_PreviewKeyDown;
 
             cccMoveScaleAdorner = new MoveScaleAdorner(this);
+            cccRotateAdorner = new rotateAdorner(this);
             AdornerLayer adornerLayer = AdornerLayer.GetAdornerLayer(this);
             adornerLayer.Visibility = Visibility.Visible;
 

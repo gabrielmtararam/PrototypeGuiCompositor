@@ -167,6 +167,7 @@ namespace MoveNoCopyAdorner
                         AdornerLayer adornerLayer = AdornerLayer.GetAdornerLayer(_MovedElementCCC);
 
                         adornerLayer.Add(_MovedElementCCC.cccMoveScaleAdorner);
+                        adornerLayer.Add(_MovedElementCCC.cccRotateAdorner);
 
                         Console.WriteLine($"moved_element 2click  {_MovedElementCCC.Name} adornerLayer  { adornerLayer.GetHashCode()}" +
                             $" CCC1  {(_myCanvas.Children[0] as CanvasContentControl).GetHashCode()}"+
@@ -180,6 +181,7 @@ namespace MoveNoCopyAdorner
                     {
                         AdornerLayer adornerLayer = AdornerLayer.GetAdornerLayer(_MovedElementCCC);
                         adornerLayer.Remove(_MovedElementCCC.cccMoveScaleAdorner);
+                        adornerLayer.Remove(_MovedElementCCC.cccRotateAdorner);
                     }
                 }
 

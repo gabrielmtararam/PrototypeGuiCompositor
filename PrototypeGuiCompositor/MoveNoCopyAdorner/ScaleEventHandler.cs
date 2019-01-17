@@ -32,22 +32,22 @@ namespace MoveNoCopyAdorner
             bool isOnRightCorner = false;
 
             if (e.VerticalChange + Canvas.GetTop(parentPanel) < 0){
-                Console.WriteLine($"distancia da borda top {e.VerticalChange + Canvas.GetTop(parentPanel) }");
+                //Console.WriteLine($"distancia da borda top {e.VerticalChange + Canvas.GetTop(parentPanel) }");
                 isOnTopCorner = true;
             }
 
             if (e.HorizontalChange + Canvas.GetLeft(parentPanel) < 0) {
-                Console.WriteLine($"distancia da borda left {e.HorizontalChange + Canvas.GetLeft(parentPanel) }");
+                //Console.WriteLine($"distancia da borda left {e.HorizontalChange + Canvas.GetLeft(parentPanel) }");
                 isOnLeftCorner = true;
             }
 
             if ((e.HorizontalChange + Canvas.GetLeft(parentPanel) + parentPanel.ActualWidth)>canvas.ActualWidth) {
-                Console.WriteLine($"distancia da borda right {e.HorizontalChange + Canvas.GetRight(parentPanel) }");
+                //Console.WriteLine($"distancia da borda right {e.HorizontalChange + Canvas.GetRight(parentPanel) }");
                 isOnRightCorner = true;
             }
 
             if ((e.VerticalChange + Canvas.GetTop(parentPanel) + parentPanel.ActualHeight) > canvas.ActualHeight) {
-                Console.WriteLine($"distancia da borda top {e.VerticalChange + Canvas.GetTop(parentPanel) }");
+                //Console.WriteLine($"distancia da borda top {e.VerticalChange + Canvas.GetTop(parentPanel) }");
                 isOnBottonCorner = true;
             }
 

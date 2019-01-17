@@ -7,13 +7,27 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Shapes;
 
 namespace MoveNoCopyAdorner
 {
     class RotateEventHandler
     {
-        FrameworkElement parentPanel;
+       
+
+
+        private double initialAngle;
+        private RotateTransform rotateTransform;
+        private Vector startVector;
+        private Point centerPoint;
+
+
         Canvas canvas;
+        Point _origin;
+        FrameworkElement parentPanel;
+
+        Line myLine;
 
         public RotateEventHandler(FrameworkElement _parentPanel, Canvas _canvas)
         {
@@ -22,130 +36,59 @@ namespace MoveNoCopyAdorner
         }
         public void OnDragDelta(object sender, DragDeltaEventArgs e)
         {
+            canvas.Children.Remove(myLine);
+            myLine = new Line();
 
             var s = sender as Thumb;
-            var yadjust = parentPanel.Height + e.VerticalChange;
-            var xadjust = parentPanel.Width + e.HorizontalChange;
-            bool isOnTopCorner = false;
-            bool isOnLeftCorner = false;
-            bool isOnBottonCorner = false;
-            bool isOnRightCorner = false;
+            Point _currentPos = Mouse.GetPosition(canvas);
 
-            if (e.VerticalChange + Canvas.GetTop(parentPanel) < 0){
-                Console.WriteLine($"distancia da borda top {e.VerticalChange + Canvas.GetTop(parentPanel) }");
-                isOnTopCorner = true;
-            }
+            var p = _origin;
+            double currentLeft = p.X;
+            double currentTop = p.Y;
 
-            if (e.HorizontalChange + Canvas.GetLeft(parentPanel) < 0) {
-                Console.WriteLine($"distancia da borda left {e.HorizontalChange + Canvas.GetLeft(parentPanel) }");
-                isOnLeftCorner = true;
-            }
+            myLine.Stroke = System.Windows.Media.Brushes.LightSteelBlue;
+            myLine.X1 = p.X - s.ActualWidth / 2 ;
+            myLine.X2 = _currentPos.X;
+            myLine.Y1 = p.Y - s.ActualHeight / 2;
+            myLine.Y2 = _currentPos.Y;
+            myLine.HorizontalAlignment = HorizontalAlignment.Left;
+            myLine.VerticalAlignment = VerticalAlignment.Center;
+            myLine.StrokeThickness = 2;
+            canvas.Children.Add(myLine);
 
-            if ((e.HorizontalChange + Canvas.GetLeft(parentPanel) + parentPanel.ActualWidth)>canvas.ActualWidth) {
-                Console.WriteLine($"distancia da borda right {e.HorizontalChange + Canvas.GetRight(parentPanel) }");
-                isOnRightCorner = true;
-            }
 
-            if ((e.VerticalChange + Canvas.GetTop(parentPanel) + parentPanel.ActualHeight) > canvas.ActualHeight) {
-                Console.WriteLine($"distancia da borda top {e.VerticalChange + Canvas.GetTop(parentPanel) }");
-                isOnBottonCorner = true;
-            }
+            var y = -(_currentPos.Y - p.Y + s.ActualHeight / 2);
+            var x = _currentPos.X - p.X + s.ActualWidth / 2;
+            //  y = Math.Abs(y);
+            //  x = Math.Abs(x);
 
-            if ((s.HorizontalAlignment.ToString() == "Left") && (s.VerticalAlignment.ToString() == "Center"))
-            {
-                if (!isOnLeftCorner)
-                {
-                    Canvas.SetLeft(parentPanel, e.HorizontalChange + Canvas.GetLeft(parentPanel));
-                    xadjust = parentPanel.Width - e.HorizontalChange;
-                    parentPanel.Width = xadjust;
-                }
-            }
-            else if ((s.HorizontalAlignment.ToString() == "Center") && (s.VerticalAlignment.ToString() == "Bottom"))
-            {
-                if (!isOnBottonCorner)
-                    parentPanel.Height = yadjust;
-            }
-            else if ((s.HorizontalAlignment.ToString() == "Left") && (s.VerticalAlignment.ToString() == "Bottom"))
-            {
 
-                if (!isOnLeftCorner)
-                {
-                    Canvas.SetLeft(parentPanel, e.HorizontalChange + Canvas.GetLeft(parentPanel));
-                    xadjust = parentPanel.Width - e.HorizontalChange;
-                    parentPanel.Width = xadjust;
-                }
+            double tg = y / x;
+            double radians = Math.Atan(tg);
+            double angle = radians * (180 / Math.PI);
 
-                if (!isOnBottonCorner)
-                {
-                    parentPanel.Height = yadjust;
-                }
+            if (y < 0 && x > 0)
+                angle = angle + 360;
+            else if (y < 0)
+                angle = angle + 180;
+            else if (y > 0 && x < 0)
+                angle = angle + 180;
 
-            }
-            else if ((s.HorizontalAlignment.ToString() == "Right") && (s.VerticalAlignment.ToString() == "Top"))
-            {
+            RotateTransform rotateTransform1 = new RotateTransform(-angle, parentPanel.ActualWidth / 2, parentPanel.ActualHeight / 2);
 
-                if (!isOnRightCorner)
-                {
-                    parentPanel.Width = xadjust;
-                }
-
-                if (!isOnTopCorner)
-                {
-                    Canvas.SetTop(parentPanel, e.VerticalChange + Canvas.GetTop(parentPanel));
-                    yadjust = parentPanel.Height - e.VerticalChange;
-                    parentPanel.Height = yadjust;
-                }
-
-            }
-            else if (s.VerticalAlignment.ToString() == "Center"){
-                if(!isOnRightCorner)
-                    parentPanel.Width = xadjust;
-            }
-            else if (s.HorizontalAlignment.ToString() == "Center")
-            {
-                if (!isOnTopCorner)
-                {
-                    Canvas.SetTop(parentPanel, e.VerticalChange + Canvas.GetTop(parentPanel));
-                    yadjust = parentPanel.Height - e.VerticalChange;
-                    parentPanel.Height = yadjust;
-                }
-            }
-            else if ((s.HorizontalAlignment.ToString() == "Left") && (s.VerticalAlignment.ToString() == "Top"))
-            {
-                yadjust = parentPanel.Height - e.VerticalChange;
-                xadjust = parentPanel.Width - e.HorizontalChange;
-
-                if (!isOnLeftCorner){
-                    Canvas.SetLeft(parentPanel, e.HorizontalChange + Canvas.GetLeft(parentPanel));
-                    parentPanel.Width = xadjust;
-                }
-
-                if (!isOnTopCorner) {
-                    parentPanel.Height = yadjust;
-                    Canvas.SetTop(parentPanel, e.VerticalChange + Canvas.GetTop(parentPanel));
-                }
-                
-              
-            }
-
-            else if ((xadjust >= 0) && (yadjust >= 0)){
-
-                if (!isOnRightCorner)
-                {
-                    parentPanel.Width = xadjust;
-                }
-
-                if (!isOnBottonCorner)
-                {
-                    parentPanel.Height = yadjust;
-                }
-            }
+            Console.WriteLine($" parentePanel {parentPanel }  origin {_origin} parentPanel.ActualWidth {parentPanel.ActualWidth } parentPanel.ActualHeight {parentPanel.ActualHeight } ");
+            parentPanel.RenderTransform = rotateTransform1;
         }
+
 
         public void OnDragStarted(object sender, DragStartedEventArgs e)
         {
             var s = sender as Thumb;
-            s.Opacity = 0.5;
+
+            _origin = parentPanel.TranslatePoint(new Point(0, 0), canvas);
+            _origin.X += parentPanel.ActualWidth / 2;
+            _origin.Y += parentPanel.ActualHeight;
+
         }
 
         public void OnDragCompleted(object sender, DragCompletedEventArgs e)
