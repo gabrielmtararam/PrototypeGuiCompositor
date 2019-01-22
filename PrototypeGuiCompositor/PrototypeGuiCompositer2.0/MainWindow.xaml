@@ -1,0 +1,65 @@
+﻿<Window x:Class="MoveNoCopyAdorner.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MoveNoCopyAdorner"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="645.9" Width="1144.4"
+        Loaded="OnLoaded">
+
+
+    <Window.Resources>
+        <Style x:Key="DisplayElement" TargetType="FrameworkElement">
+
+        </Style>
+    </Window.Resources>
+
+    <Grid Name="myStackPanel">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="10*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition  Width="6*" />
+        </Grid.ColumnDefinitions>
+
+        <Button Background="Aqua" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"></Button>
+
+        <local:DragNDropSideBar Grid.Column="0" Grid.Row="1">
+
+        </local:DragNDropSideBar>
+        <Canvas  Grid.Column="1" Grid.Row="1" x:Name="_myCanvas" Margin="10" Background="CornflowerBlue">
+
+            <!--<Button MinHeight="71" MinWidth="113" Click="Button_Click"></Button>-->
+
+            <local:CanvasContentControl x:Name="Ccc1"  MinHeight="50" MinWidth="50"  Canvas.Left="156" Canvas.Top="153" Height="71" Width="88">
+                <!--//  <Button Height="71" Width="113"></Button>-->
+                <local:CanvasContentControl.Content2>
+                    <Button MinHeight="71" MinWidth="113"></Button>
+                </local:CanvasContentControl.Content2>
+
+            </local:CanvasContentControl>
+
+
+            <local:CanvasContentControl x:Name="Ccc2"  MinHeight="50" MinWidth="50"  Canvas.Left="404" Canvas.Top="98" Height="72" Width="88">
+                <!--//  <Button Height="71" Width="113"></Button>-->
+                <local:CanvasContentControl.Content2>
+                    <Button Background="Aqua"  MinHeight="71" MinWidth="113"></Button>
+                </local:CanvasContentControl.Content2>
+
+            </local:CanvasContentControl>
+            <!--<local:CanvasContentControl    x:Name="Ccc2"  MinHeight="50" MinWidth="50"  Canvas.Left="303" Canvas.Top="159">
+
+                
+
+                -->
+            <!--MouseEnter="Move_MouseEnter"   MouseLeave="Move_MouseLeave"-->
+            <!--
+
+            </local:CanvasContentControl>-->
+        </Canvas>
+    </Grid>
+</Window>

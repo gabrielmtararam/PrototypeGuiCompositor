@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1DD0FEA4-BE0D-49A9-B893-DBE139E89626}</ProjectGuid>
+    <ProjectGuid>{7772A558-DFC8-4A94-A4DA-899F35A534B9}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>MoveNoCopyAdorner</RootNamespace>
     <AssemblyName>MoveNoCopyAdorner</AssemblyName>
@@ -73,22 +73,26 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="BoundCalculator.cs" />
-    <Compile Include="rotateAdorner.cs" />
-    <Compile Include="rotateAdornerVisual.xaml.cs">
+    <Compile Include="Adorners\rotateAdorner.cs" />
+    <Compile Include="AdornerVisual\rotateAdornerVisual.xaml.cs">
       <DependentUpon>rotateAdornerVisual.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RotateEventHandler.cs" />
-    <Compile Include="ScaleEventHandler.cs" />
-    <Compile Include="MoveAdorner.cs" />
-    <Compile Include="MoveEventHandler.cs" />
-    <Compile Include="MoveScaleAdornerVisual.xaml.cs">
+    <Compile Include="CurrencyExtensions.cs" />
+    <Compile Include="eventHanddlers\RotateEventHandler.cs" />
+    <Compile Include="eventHanddlers\ScaleEventHandler.cs" />
+    <Compile Include="Adorners\MoveAdorner.cs" />
+    <Compile Include="eventHanddlers\MoveEventHandler.cs" />
+    <Compile Include="AdornerVisual\MoveScaleAdornerVisual.xaml.cs">
       <DependentUpon>MoveScaleAdornerVisual.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MoveScaleAdorner.cs" />
-    <Compile Include="SimpleCircleAdorner.cs" />
+    <Compile Include="Adorners\MoveScaleAdorner.cs" />
+    <Compile Include="Adorners\SimpleCircleAdorner.cs" />
     <Compile Include="CanvasContentControl.xaml.cs">
       <DependentUpon>CanvasContentControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MoveCalculator.cs" />
+    <Compile Include="UserControls\DragNDropSideBar.xaml.cs">
+      <DependentUpon>DragNDropSideBar.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -106,11 +110,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="rotateAdornerVisual.xaml">
+    <Page Include="AdornerVisual\rotateAdornerVisual.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MoveScaleAdornerVisual.xaml">
+    <Page Include="AdornerVisual\MoveScaleAdornerVisual.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\DragNDropSideBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -141,6 +149,34 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="images\button.png" />
+    <Resource Include="images\icons8-add-50.png" />
+    <Resource Include="images\icons8-add-text-50.png" />
+    <Resource Include="images\icons8-apagar-para-sempre-48.png" />
+    <Resource Include="images\icons8-button-50%281%29.png" />
+    <Resource Include="images\icons8-button-50.png" />
+    <Resource Include="images\icons8-copy-50.png" />
+    <Resource Include="images\icons8-eye-32.png" />
+    <Resource Include="images\icons8-eye-64.png" />
+    <Resource Include="images\icons8-full-image-50.png" />
+    <Resource Include="images\icons8-gire-para-a-esquerda-50.png" />
+    <Resource Include="images\icons8-group-objects-50.png" />
+    <Resource Include="images\icons8-hide-32.png" />
+    <Resource Include="images\icons8-hide-64.png" />
+    <Resource Include="images\icons8-ios-application-placeholder-64.png" />
+    <Resource Include="images\icons8-move-64.png" />
+    <Resource Include="images\icons8-opacity-50.png" />
+    <Resource Include="images\icons8-paste-50.png" />
+    <Resource Include="images\icons8-push-pin-50.png" />
+    <Resource Include="images\icons8-redimensionar-100.png" />
+    <Resource Include="images\icons8-redo-50.png" />
+    <Resource Include="images\icons8-rounded-rectangle-stroked-50.png" />
+    <Resource Include="images\icons8-square-filled-50.png" />
+    <Resource Include="images\icons8-undo-50.png" />
+    <Resource Include="images\icons8-unpin-50.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

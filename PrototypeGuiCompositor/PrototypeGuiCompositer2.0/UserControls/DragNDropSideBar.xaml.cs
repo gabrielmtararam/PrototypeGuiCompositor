@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PrototypeGuiCompositor
+namespace MoveNoCopyAdorner
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for DragNDropSideBar.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class DragNDropSideBar : UserControl
     {
-        public MainWindow()
+        public DragNDropSideBar()
         {
             InitializeComponent();
         }

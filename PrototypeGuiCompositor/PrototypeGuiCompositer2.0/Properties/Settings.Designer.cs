@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PrototypeGuiCompositor.Properties
+namespace MoveNoCopyAdorner.Properties
 {
 
 
