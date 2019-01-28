@@ -15,7 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 
-namespace MoveNoCopyAdorner
+namespace PrototypeGuiCompositor30
 {
     public partial class MoveScaleAdornerVisual : UserControl
     {

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrototypeGuiCompositor20", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrototypeGuiCompositor20.Tests", "PrototypeGuiCompositor20.Tests\PrototypeGuiCompositor20.Tests.csproj", "{49770A82-869F-47C5-AE8A-16A914ADFD1C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrototypeGuiCompositor30", "PrototypeGuiCompositor30\PrototypeGuiCompositor30.csproj", "{BC1A0904-4A16-4930-B190-4ADED0D83C87}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{49770A82-869F-47C5-AE8A-16A914ADFD1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49770A82-869F-47C5-AE8A-16A914ADFD1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49770A82-869F-47C5-AE8A-16A914ADFD1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC1A0904-4A16-4930-B190-4ADED0D83C87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC1A0904-4A16-4930-B190-4ADED0D83C87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC1A0904-4A16-4930-B190-4ADED0D83C87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC1A0904-4A16-4930-B190-4ADED0D83C87}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

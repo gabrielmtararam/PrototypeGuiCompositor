@@ -8,7 +8,7 @@ using System.Windows.Documents;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
-namespace MoveNoCopyAdorner
+namespace PrototypeGuiCompositor30
 {
     class MoveAdorner : Adorner
     {
