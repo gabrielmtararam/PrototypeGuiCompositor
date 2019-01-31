@@ -16,7 +16,7 @@ namespace PrototypeGuiCompositor30
         RotateAdornerVisual customControl;
         UIElement _adornedElement;
 
-        public rotateAdorner(UIElement adornedElement)
+        public rotateAdorner(UIElement adornedElement )
             : base(adornedElement)
         {
             _adornedElement = adornedElement;
@@ -29,7 +29,7 @@ namespace PrototypeGuiCompositor30
             };
             brush.BeginAnimation(Brush.OpacityProperty, animation);
             visualChildren = new VisualCollection(this);
-            customControl = new RotateAdornerVisual();
+            customControl = new RotateAdornerVisual( );
             customControl.DataContext = _adornedElement;
             visualChildren.Add(customControl);
 

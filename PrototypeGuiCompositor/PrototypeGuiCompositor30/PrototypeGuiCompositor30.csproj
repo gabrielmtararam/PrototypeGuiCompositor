@@ -49,6 +49,24 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -56,22 +74,53 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Adorners\MoveAdorner.cs" />
+    <Compile Include="Adorners\DragNDropAdorner.cs" />
     <Compile Include="Adorners\MoveScaleAdorner.cs" />
     <Compile Include="Adorners\rotateAdorner.cs" />
     <Compile Include="Adorners\SimpleCircleAdorner.cs" />
+    <Compile Include="AdornerVisual\DragNDropAdornerVisual.xaml.cs">
+      <DependentUpon>DragNDropAdornerVisual.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AdornerVisual\MoveScaleAdornerVisual.xaml.cs">
       <DependentUpon>MoveScaleAdornerVisual.xaml</DependentUpon>
     </Compile>
     <Compile Include="AdornerVisual\rotateAdornerVisual.xaml.cs">
       <DependentUpon>rotateAdornerVisual.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CommandManager.cs" />
+    <Compile Include="Commands\InsertButtonCommand.cs" />
+    <Compile Include="Commands\MoveCommand.cs" />
+    <Compile Include="Commands\RotateCommand.cs" />
+    <Compile Include="Commands\ScaleElementCommand.cs" />
+    <Compile Include="elements\ImageElement.cs" />
+    <Compile Include="eventHanddlers\DragNDropEventHandler.cs" />
     <Compile Include="eventHanddlers\MoveEventHandler.cs" />
     <Compile Include="eventHanddlers\RotateEventHandler.cs" />
     <Compile Include="eventHanddlers\ScaleEventHandler.cs" />
+    <Compile Include="factory\ControlsFactory.cs" />
+    <Compile Include="factory\ScreensFactory.cs" />
+    <Compile Include="intefaces\ICommand.cs" />
+    <Compile Include="intefaces\IContentControl.cs" />
+    <Compile Include="intefaces\ICanvasContentControl.cs" />
+    <Compile Include="intefaces\IMovable.cs" />
+    <Compile Include="intefaces\IRotatable.cs" />
+    <Compile Include="intefaces\IScalable.cs" />
+    <Compile Include="intefaces\IScreen.cs" />
     <Compile Include="MoveCalculator.cs" />
+    <Compile Include="Screens\DefaultScreen.cs" />
+    <Compile Include="UserControls\CanvasContainerControl.xaml.cs">
+      <DependentUpon>CanvasContainerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\DragNDropContentControl.xaml.cs">
+      <DependentUpon>DragNDropContentControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\DragNDropSideBar.xaml.cs">
       <DependentUpon>DragNDropSideBar.xaml</DependentUpon>
     </Compile>
+    <Page Include="AdornerVisual\DragNDropAdornerVisual.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="AdornerVisual\MoveScaleAdornerVisual.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -80,7 +129,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="CanvasContentControl.xaml">
+    <Page Include="UserControls\CanvasContainerControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\DragNDropContentControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\CanvasContentControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -92,7 +149,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CanvasContentControl.xaml.cs">
+    <Compile Include="UserControls\CanvasContentControl.xaml.cs">
       <DependentUpon>CanvasContentControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
@@ -122,6 +179,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -205,5 +263,12 @@
   <ItemGroup>
     <Resource Include="images\icons8-unpin-50.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\icons8-checked-checkbox-32.png" />
+    <Resource Include="images\icons8-checked-checkbox-64.png" />
+    <Resource Include="images\icons8-unchecked-checkbox-32.png" />
+    <Resource Include="images\icons8-unchecked-checkbox-64.png" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -10,16 +10,17 @@ using System.Windows.Shapes;
 
 namespace PrototypeGuiCompositor30
 {
-    public class MoveScaleAdorner : Adorner
+    public class DragNDropAdorner : Adorner
     {
         private VisualCollection visualChildren;
-        MoveScaleAdornerVisual customControl;
+        DragNDropAdornerVisual customControl;
         UIElement _adornedElement;
 
-        public MoveScaleAdorner(UIElement adornedElement)
+        public DragNDropAdorner(UIElement adornedElement)
             : base(adornedElement)
         {
             _adornedElement = adornedElement;
+            //Console.WriteLine($"here adorned {adornedElement}");
             var brush = new VisualBrush(adornedElement);
 
             var animation = new DoubleAnimation(0.3, 1, new Duration(TimeSpan.FromSeconds(1)))
@@ -29,7 +30,7 @@ namespace PrototypeGuiCompositor30
             };
             brush.BeginAnimation(Brush.OpacityProperty, animation);
             visualChildren = new VisualCollection(this);
-            customControl = new MoveScaleAdornerVisual( );
+            customControl = new DragNDropAdornerVisual();
             customControl.DataContext = _adornedElement;
             visualChildren.Add(customControl);
 

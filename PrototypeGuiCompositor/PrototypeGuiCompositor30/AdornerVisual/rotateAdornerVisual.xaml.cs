@@ -20,10 +20,11 @@ namespace PrototypeGuiCompositor30
     public partial class RotateAdornerVisual : UserControl
     {
         RotateEventHandler rotateEventHandler;
-
-        public RotateAdornerVisual()
+      
+        public RotateAdornerVisual( )
         {
             InitializeComponent();
+         
         }
         public void OnLoaded(object sender, RoutedEventArgs e) {
             DependencyObject _myCanvas = VisualTreeHelper.GetParent(this.DataContext as FrameworkElement);

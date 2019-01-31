@@ -18,7 +18,6 @@ namespace PrototypeGuiCompositor30
     public partial class CanvasContentControl : UserControl
     {
        
-
         MouseEventHandler mouseEventHandler;
         public bool IsSelectedCCC
         {
@@ -82,6 +81,26 @@ namespace PrototypeGuiCompositor30
             cccRotateAdorner = new rotateAdorner(this);
             AdornerLayer adornerLayer = AdornerLayer.GetAdornerLayer(this);
             adornerLayer.Visibility = Visibility.Visible;
+
+            //(CanvasElement as ImageElement).Height;
+
+            //Binding bindingHeight = new Binding
+            //{
+            //    Source = (CanvasElement as ImageElement),
+            //    Path = new PropertyPath("Height"),
+            //    UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+            //};
+            //(this).SetBinding(HeightProperty, bindingHeight);
+
+            //Binding bindingWidth = new Binding
+            //{
+            //    Source = (CanvasElement as ImageElement),
+            //    Path = new PropertyPath("Width"),
+            //    UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+            //};
+            //(this).SetBinding(WidthProperty, bindingWidth);
+            //(this.Height) = ((CanvasElement as ImageElement).Height);
+
 
         }
 

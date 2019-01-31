@@ -20,14 +20,20 @@ namespace PrototypeGuiCompositor30
         private double _originalTop;
         private Adorner _overlayElement;
 
+        double nextLeftOffset;
+        double nextTopOffset;
+        FrameworkElement _FrMovedElement;
+
         private Point _previousMousePosition;
         private Canvas _myCanvas;
+        
 
        public  MouseEventHandler(Canvas myCanvas)
         {
             _myCanvas = myCanvas;
             _previousMousePosition.X = 0;
             _previousMousePosition.Y = 0;
+          
         }
 
 
@@ -51,6 +57,7 @@ namespace PrototypeGuiCompositor30
 
         public void DragFinished(bool cancelled)
         {
+            
             Mouse.Capture(null);
             if (_isDragging)
             {
@@ -67,6 +74,8 @@ namespace PrototypeGuiCompositor30
             }
             _isDragging = false;
             _isDown = false;
+            CommandManager.AddCommand(new MoveCommand(_FrMovedElement, nextTopOffset, nextLeftOffset, _originalTop, _originalLeft));
+         
         }
 
         public void MyCanvas_PreviewMouseMove(object sender, MouseEventArgs e)
@@ -102,10 +111,15 @@ namespace PrototypeGuiCompositor30
 
         public void DragMoved()
         {
-            FrameworkElement _FrMovedElement = _MovedElement as FrameworkElement;
+             _FrMovedElement = _MovedElement as FrameworkElement;
 
-            Canvas.SetTop(_MovedElement, MoveCalculator.getNextOffset( Canvas.GetTop(_MovedElement), _FrMovedElement.ActualHeight, _myCanvas.ActualHeight, Mouse.GetPosition(_MovedElement).Y, Mouse.GetPosition(_myCanvas).Y, _previousMousePosition.Y));
-            Canvas.SetLeft(_MovedElement, MoveCalculator.getNextOffset( Canvas.GetLeft(_MovedElement), _FrMovedElement.ActualWidth, _myCanvas.ActualWidth, Mouse.GetPosition(_MovedElement).X, Mouse.GetPosition(_myCanvas).X, _previousMousePosition.X));
+
+            nextTopOffset = MoveCalculator.getNextOffset(Canvas.GetTop(_MovedElement), _FrMovedElement.ActualHeight, _myCanvas.ActualHeight, Mouse.GetPosition(_MovedElement).Y, Mouse.GetPosition(_myCanvas).Y, _previousMousePosition.Y);
+            nextLeftOffset = MoveCalculator.getNextOffset(Canvas.GetLeft(_MovedElement), _FrMovedElement.ActualWidth, _myCanvas.ActualWidth, Mouse.GetPosition(_MovedElement).X, Mouse.GetPosition(_myCanvas).X, _previousMousePosition.X);
+
+
+            Canvas.SetTop(_MovedElement, nextTopOffset);
+            Canvas.SetLeft(_MovedElement, nextLeftOffset);
             _previousMousePosition = Mouse.GetPosition(_myCanvas);
         }
         public void MyCanvas_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)

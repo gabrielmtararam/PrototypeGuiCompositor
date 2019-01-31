@@ -5,8 +5,299 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PrototypeGuiCompositor30"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid Name="myStackPanel">
+        Title="MainWindow" Height="450"  MinWidth="1200" Width="1100"
+    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+     xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
+     xmlns:s="clr-namespace:System;assembly=mscorlib">
+
+
+
+    <Grid MinHeight="10" MinWidth="1200">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*" MinHeight="30"></RowDefinition>
+            <RowDefinition Height="3*" MinHeight="50"></RowDefinition>
+            <RowDefinition Height="40*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+            <ColumnDefinition Width="15*"></ColumnDefinition>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+
+
+
+        <xcad:DockingManager  Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3"
+               AllowMixedOrientation="True"
+               BorderBrush="Black"
+               BorderThickness="1"
+               >
+
+            <xcad:DockingManager.DocumentHeaderTemplate>
+
+                <DataTemplate>
+                    <TextBlock Text="{Binding Title}" />
+                </DataTemplate>
+
+            </xcad:DockingManager.DocumentHeaderTemplate>
+            <xcad:LayoutRoot x:Name="_layoutRoot" >
+                <xcad:LayoutPanel Orientation="Horizontal">
+                    
+
+                    <xcad:LayoutAnchorablePaneGroup  Orientation="Vertical" DockWidth="*">
+
+                        <xcad:LayoutAnchorablePane>
+                            <xcad:LayoutAnchorable ContentId="Screean" Title="Screens"  >
+                                <StackPanel>
+
+                                    <TreeView HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" MinHeight="134" >
+                                        <TreeViewItem Header="Temperature Analysis">
+                                            <TreeViewItem Header="Temperature Mesure Config">
+
+                                            </TreeViewItem>
+                                            <TreeViewItem Header="Temperature Result">
+
+                                            </TreeViewItem>
+                                        </TreeViewItem>
+                                        <TreeViewItem Header="Temperature Analysis">
+                                            <TreeViewItem Header="Temperature Mesure Config">
+
+                                            </TreeViewItem>
+                                            <TreeViewItem Header="Temperature Result">
+
+                                            </TreeViewItem>
+                                        </TreeViewItem>
+                                        <TreeViewItem Header="Pressure Analysis">
+                                            <TreeViewItem Header="Pressure Mesure Config">
+
+                                            </TreeViewItem>
+                                            <TreeViewItem Header="Pressure Result">
+
+                                            </TreeViewItem>
+                                        </TreeViewItem>
+                                        <TreeViewItem Header="Initial Screen">
+
+                                        </TreeViewItem>
+                                        <TreeViewItem Header="Final Screen">
+
+                                        </TreeViewItem>
+
+                                    </TreeView>
+
+
+
+                                </StackPanel>
+                                
+                            </xcad:LayoutAnchorable>
+
+                        </xcad:LayoutAnchorablePane>
+                        <xcad:LayoutAnchorablePane>
+                            <xcad:LayoutAnchorable ContentId="teste" Title="teste" >
+                                <Button> em breve</Button>
+                            </xcad:LayoutAnchorable>
+                        </xcad:LayoutAnchorablePane>
+                    </xcad:LayoutAnchorablePaneGroup>
+
+                    <xcad:LayoutAnchorablePaneGroup DockWidth="4*">
+                        <xcad:LayoutAnchorablePane>
+                            <xcad:LayoutAnchorable ContentId="Screen1" Title="Screen1"  >
+                                <local:CanvasContainerControl x:Name="canvasContainer">
+
+                                </local:CanvasContainerControl>
+                            </xcad:LayoutAnchorable>
+
+                        </xcad:LayoutAnchorablePane>
+                    </xcad:LayoutAnchorablePaneGroup>
+
+                    <xcad:LayoutAnchorablePaneGroup DockWidth="*">
+                        <xcad:LayoutAnchorablePane>
+                            <xcad:LayoutAnchorable ContentId="Style" Title="Style"  >
+                                <ListBox>
+                                    <s:String>width 1</s:String>
+                                    <s:String>height 2</s:String>
+                                    <s:String>Name 3</s:String>
+                                </ListBox>
+                            </xcad:LayoutAnchorable>
+
+                        </xcad:LayoutAnchorablePane>
+                    </xcad:LayoutAnchorablePaneGroup>
+
+                </xcad:LayoutPanel>
+               
+
+            </xcad:LayoutRoot>
+        </xcad:DockingManager>
+
+
+
+
+        <Menu Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Background="#FFDDDDDD">
+            <MenuItem Header="File" FontWeight="Bold" FontSize="18" Height="36" Width="38">
+                <MenuItem Header="New Project"/>
+                <MenuItem Header="Save Project"/>
+                <MenuItem Header="Save Project As"/>
+                <MenuItem Header="Load Project"/>
+            </MenuItem>
+            <MenuItem Header="Edit" FontWeight="Bold" FontSize="18">
+                <MenuItem Header="Screens Size"/>
+
+            </MenuItem>
+            <MenuItem Header="Preferences" FontWeight="Bold" FontSize="18">
+                <MenuItem Header="Interface"/>
+                <MenuItem Header="Sensibility"/>
+                <MenuItem Header="Shortcuts"/>
+                <MenuItem Header="Auto Backup"/>
+            </MenuItem>
+            <MenuItem Header="Render Image" FontWeight="Bold" FontSize="18">
+            </MenuItem>
+            <MenuItem Header="Converters" FontWeight="Bold" FontSize="18">
+                <MenuItem Header="Video Converter"/>
+                <MenuItem Header="Audio Converter"/>
+                <MenuItem Header="GIF Extractor"/>
+            </MenuItem>
+            <MenuItem Header="Online Assets" FontWeight="Bold" FontSize="18">
+                <MenuItem Header="View Repository Assets"/>
+                <MenuItem Header="Manage Downloaded Assets"/>
+            </MenuItem>
+            <MenuItem Header="Help" FontWeight="Bold" FontSize="18">
+                <MenuItem Header="Tutorial"/>
+                <MenuItem Header="View Help"/>
+                <MenuItem Header="Technical Support"/>
+            </MenuItem>
+
+        </Menu>
+
+
+        <Menu MinHeight="10" MinWidth="900" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
+            
+            <local:dragNDropContentControl >
+                <local:dragNDropContentControl.DragNDropContent>
+                    <Button MinWidth="65" MinHeight="35" Width="54" FontSize="18" IsEnabled="False" >
+                        <Grid>
+                            
+                            <Image Height="41" Width="55" Source="./images/icons8-button-50(1).png"/>
+                        </Grid>
+                    </Button>
+                </local:dragNDropContentControl.DragNDropContent>
+            </local:dragNDropContentControl>
+
+
+            <!--<local:dragNDropContentControl C>
+                <local:dragNDropContentControl.DragNDropContent>
+                    <Button MinWidth="65" MinHeight="35" Width="54" FontSize="18" IsEnabled="True" Click="OnImageInsertSelect" >
+                        <Grid>
+
+                            <Image Height="41" Width="55" Source="./images/icons8-full-image-50.png"/>
+                        </Grid>
+                    </Button>
+                </local:dragNDropContentControl.DragNDropContent>
+            </local:dragNDropContentControl>-->
+
+            <Button Name="button1" MinWidth="65" MinHeight="35" Width="54" FontSize="18" IsEnabled="True" Click="OnImageInsertSelect" >
+                <Grid>
+
+                    <Image Height="41" Width="55" Source="./images/icons8-full-image-50.png"/>
+                </Grid>
+            </Button>
+
+            <Button MinWidth="65" MinHeight="35" FontSize="18" Width="44" Background="#FFDDDDDD">
+                <Image Height="41" Width="59" Source="./images/icons8-add-text-50.png"/>
+            </Button>
+            <Button MinWidth="65" MinHeight="35" FontSize="18" Width="44"  Background="#FFDDDDDD" IsEnabled="False">
+                <Image Height="41" Width="59" Source="./images/icons8-square-filled-50.png"/>
+            </Button>
+            <Button MinWidth="65" MinHeight="35" FontSize="18" Width="44"  Background="#FFDDDDDD" IsEnabled="False">
+                <Image Height="41" Width="59" Source="./images/icons8-ios-application-placeholder-64.png"/>
+            </Button>
+            <Button MinWidth="50" MinHeight="35" FontSize="18" Width="54" Background="#FF90908D">
+                <Image Height="41" Width="46" Source="./images/icons8-move-64.png"/>
+            </Button>
+            <Button MinWidth="50" MinHeight="35" FontSize="18" Width="54" Background="#FF90908D">
+                <Image Height="41" Width="46" Source="./images/icons8-redimensionar-100.png"/>
+            </Button>
+            <Button MinWidth="50" MinHeight="35" FontSize="18" Width="19" Background="#FF90908D">
+                <Image Height="40" Width="40" Source="./images/icons8-gire-para-a-esquerda-50.png" OpacityMask="#FFFEFF87"/>
+            </Button>
+            <Button MinWidth="50" MinHeight="50" FontSize="18" Width="41" Background="#FF90908D" Height="6">
+                <Image Height="36" Width="40" Source="./images/icons8-apagar-para-sempre-48.png"/>
+            </Button>
+            <Button MinWidth="50" MinHeight="50" FontSize="18" Width="41"  Background="#FF90908D" Height="6">
+                <Image Height="36" Width="40" Source="./images/icons8-copy-50.png"/>
+            </Button>
+            <Button MinWidth="50" MinHeight="50" FontSize="18" Width="41" Background="#FF90908D" Height="6">
+                <Image Height="36" Width="40" Source="./images/icons8-paste-50.png"/>
+            </Button>
+            <Button MinWidth="50" MinHeight="50" FontSize="18" Width="41" Background="#FF90908D" Height="6" Click="OnUndoclick">
+                <Image Height="36" Width="40" Source="./images/icons8-undo-50.png"/>
+            </Button>
+            <Button MinWidth="50" MinHeight="50" FontSize="18" Width="41"  Background="#FF90908D" Height="6" Click="OnRedoClick">
+                <Image Height="36" Width="40" Source="./images/icons8-redo-50.png"/>
+            </Button>
+            <Button MinWidth="50" MinHeight="50" FontSize="18" Width="41" Background="#FF90908D" Height="6">
+                <Image Height="36" Width="40" Source="./images/icons8-eye-64.png"/>
+            </Button>
+            <Button MinWidth="50" MinHeight="50" FontSize="18" Width="41"  Background="#FF90908D" Height="6">
+                <Image Height="36" Width="40" Source="./images/icons8-hide-64.png"/>
+            </Button>
+            <Button Name="btnSelectAll" MinWidth="65" Background="#FF90908D" MinHeight="35" Width="54" FontSize="18" IsEnabled="True" Click="OnSelectAllClick" >
+                <Grid>
+
+                    <Image Height="41" Width="55" Source="./images/icons8-unchecked-checkbox-32.png"/>
+                </Grid>
+            </Button>
+        </Menu>
+
+
+    </Grid>
+
+
+
+
+
+
+
+    <!--<xcad:DockingManager  MaxHeight="425"
+               AllowMixedOrientation="True"
+               BorderBrush="Black"
+               BorderThickness="1"
+               >
+
+        <xcad:DockingManager.DocumentHeaderTemplate>
+
+            <DataTemplate>
+                <TextBlock Text="{Binding Title}" />
+            </DataTemplate>
+
+        </xcad:DockingManager.DocumentHeaderTemplate>
+        <xcad:LayoutRoot x:Name="_layoutRoot">
+            <xcad:LayoutPanel Orientation="Horizontal">
+                <xcad:LayoutDocumentPaneGroup >
+                    <xcad:LayoutDocumentPane >
+
+                        <xcad:LayoutDocument ContentId="document2" Title="Document 2" >
+                            <Grid Name="appContainer">
+                                
+                            </Grid>
+                        </xcad:LayoutDocument>
+                    </xcad:LayoutDocumentPane>
+                
+                    <xcad:LayoutDocumentPane>
+
+                        <xcad:LayoutDocument ContentId="document3" Title="Document 3" >
+                            <TextBox Text="Document 3 Content" AcceptsReturn="True"/>
+                        </xcad:LayoutDocument>
+                    </xcad:LayoutDocumentPane>
+
+                </xcad:LayoutDocumentPaneGroup >
+            </xcad:LayoutPanel>
+        </xcad:LayoutRoot>
+    </xcad:DockingManager>-->
+    
+    
+    
+    
+    
+    <!--<--><!--Grid Name="appContainer">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="10*" />
@@ -21,13 +312,14 @@
 
         <local:DragNDropSideBar Grid.Column="0" Grid.Row="1">
 
-        </local:DragNDropSideBar>
-        <Canvas  Grid.Column="1" Grid.Row="1" x:Name="_myCanvas" Margin="10" Background="CornflowerBlue">
+        </local:DragNDropSideBar>-->
+        
+        <!--<Canvas  Grid.Column="1" Grid.Row="1" x:Name="_myCanvas" Margin="10" Background="CornflowerBlue">
 
-            <!--<Button MinHeight="71" MinWidth="113" Click="Button_Click"></Button>-->
+            --><!--<Button MinHeight="71" MinWidth="113" Click="Button_Click"></Button>--><!--
 
             <local:CanvasContentControl x:Name="Ccc1"  MinHeight="50" MinWidth="50"  Canvas.Left="156" Canvas.Top="153" Height="71" Width="88">
-                <!--//  <Button Height="71" Width="113"></Button>-->
+                --><!--//  <Button Height="71" Width="113"></Button>--><!--
                 <local:CanvasContentControl.Content2>
                     <Button MinHeight="71" MinWidth="113"></Button>
                 </local:CanvasContentControl.Content2>
@@ -36,13 +328,13 @@
 
 
             <local:CanvasContentControl x:Name="Ccc2"  MinHeight="50" MinWidth="50"  Canvas.Left="404" Canvas.Top="98" Height="72" Width="88">
-                <!--//  <Button Height="71" Width="113"></Button>-->
+                --><!--//  <Button Height="71" Width="113"></Button>--><!--
                 <local:CanvasContentControl.Content2>
                     <Button Background="Aqua"  MinHeight="71" MinWidth="113"></Button>
                 </local:CanvasContentControl.Content2>
 
             </local:CanvasContentControl>
-            <!--<local:CanvasContentControl    x:Name="Ccc2"  MinHeight="50" MinWidth="50"  Canvas.Left="303" Canvas.Top="159">
+            --><!--<local:CanvasContentControl    x:Name="Ccc2"  MinHeight="50" MinWidth="50"  Canvas.Left="303" Canvas.Top="159">
 
                 
 
@@ -50,7 +342,9 @@
             <!--MouseEnter="Move_MouseEnter"   MouseLeave="Move_MouseLeave"-->
             <!--
 
-            </local:CanvasContentControl>-->
-        </Canvas>
-    </Grid>
+            </local:CanvasContentControl>--><!--
+        </Canvas>-->
+    <!--</Grid>-->
+    
+    
 </Window>

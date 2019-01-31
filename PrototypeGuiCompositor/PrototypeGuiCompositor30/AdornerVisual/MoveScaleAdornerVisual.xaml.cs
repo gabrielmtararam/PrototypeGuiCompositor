@@ -20,9 +20,11 @@ namespace PrototypeGuiCompositor30
     public partial class MoveScaleAdornerVisual : UserControl
     {
         ScaleEventHandler scaleEventHandler;
-        public MoveScaleAdornerVisual()
+       
+        public MoveScaleAdornerVisual( )
         {
             InitializeComponent();
+          
         }
         public void OnLoaded(object sender, RoutedEventArgs e) {
             DependencyObject _myCanvas = VisualTreeHelper.GetParent(this.DataContext as FrameworkElement);
