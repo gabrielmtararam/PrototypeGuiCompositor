@@ -11,6 +11,7 @@ namespace PrototypeGuiCompositor30
     public interface ICanvasContentControl
     {
          UserControl CanvasUserControl { get; set; }
+       //  bool isSelected{ get; set; }
         // int Width { get; set; }
         // int Height { get; set; }
         // Point Position { get; set; }

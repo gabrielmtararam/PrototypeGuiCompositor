@@ -32,10 +32,81 @@ namespace PrototypeGuiCompositor30
             ProgramManager.InitializeProgram();
             canvasContainer.Screen = ProgramManager.screens[ProgramManager.activeScreen];
 
-           // appContainer.Children.Add(screens[currentScreen].Screen);
-           // Grid.SetRow(screens[currentScreen].Screen, 1);
-           //  Grid.SetColumn(screens[currentScreen].Screen, 1);
+            // appContainer.Children.Add(screens[currentScreen].Screen);
+            // Grid.SetRow(screens[currentScreen].Screen, 1);
+            //  Grid.SetColumn(screens[currentScreen].Screen, 1);
+            AddHandler(CanvasContentControl.MoveRoutedEvent, new RoutedEventHandler(this.MoveEvent));
 
+            AddHandler(MoveScaleAdornerVisual.MoveScaleRoutedEvent, new RoutedEventHandler(this.ScaleEvent));
+            //  MoveScaleAdornerVisual.MoveScaleRoutedEvent
+            //MoveScaleAdornerVisual.MoveScaleRoutedEvent += this.moveEvent;
+            //   MoveScaleAdornerVisual.MoveScale += moveEvent;
+        }
+        public void MoveEvent(object sender, RoutedEventArgs e)
+        {
+          //  Console.WriteLine("aaaaaaaaaaentrou aqui");
+             MoveRoutedEventArgs argumentos = e as MoveRoutedEventArgs;
+
+            if (argumentos.MyProperty != null)
+            {
+                //  double ScaleX = argumentos.MyProperty[0][1] - argumentos.MyProperty[1][1];
+                //  double ScaleY = argumentos.MyProperty[0][0] - argumentos.MyProperty[1][0];
+                double nextTop = argumentos.MyProperty[0][0] - argumentos.MyProperty[1][0];
+                double nextBot = argumentos.MyProperty[0][1] - argumentos.MyProperty[1][1];
+
+                foreach (ImageElement element in canvasContainer.Screen.elements)
+                {
+                    CanvasContentControl cccElement = (element.CanvasUserControl as CanvasContentControl);
+                    if (cccElement.IsSelectedCCC == true)
+                    {
+                        //   cccElement.Width = cccElement.ActualWidth + ScaleX;
+                        //   cccElement.Height = cccElement.ActualHeight + ScaleY;
+                        Console.WriteLine($"nextTop {nextTop}  Canvas.GetTop(cccElement) {Canvas.GetTop(cccElement)}");
+                        Canvas.SetTop(cccElement, Canvas.GetTop(cccElement)+ nextTop);
+                //        Canvas.SetLeft(cccElement, Canvas.GetLeft(cccElement) + nextBot);
+                    }
+                }
+                //foreach (double i in (argumentos.MyProperty[0]))
+                //{
+                //    Console.WriteLine($"11element {i.ToString()}");
+                //}
+                //foreach (double i in (argumentos.MyProperty[1]))
+                //{
+                //    Console.WriteLine($"222element {i.ToString()}");
+                //}
+                // e.Handled = false;
+            }
+        }
+
+        public void ScaleEvent(object sender, RoutedEventArgs e)
+        {
+            MoveScaleRoutedEventArgs argumentos = e as MoveScaleRoutedEventArgs;
+
+            double ScaleX = argumentos.MyProperty[0][1] -argumentos.MyProperty[1][1];
+            double ScaleY = argumentos.MyProperty[0][0] - argumentos.MyProperty[1][0];
+            double nextTop = argumentos.MyProperty[0][2] - argumentos.MyProperty[1][2];
+            double nextBot = argumentos.MyProperty[0][3] - argumentos.MyProperty[1][3];
+
+            foreach (ImageElement element in canvasContainer.Screen.elements)
+            {
+                CanvasContentControl cccElement = (element.CanvasUserControl as CanvasContentControl);
+                if (cccElement.IsSelectedCCC == true)
+                {
+                    cccElement.Width = cccElement.ActualWidth + ScaleX;
+                    cccElement.Height = cccElement.ActualHeight + ScaleY;
+                    Canvas.SetTop(cccElement, Canvas.GetTop(cccElement) + nextTop);
+                    Canvas.SetLeft(cccElement, Canvas.GetLeft(cccElement) + nextBot);
+                }
+            }
+            //foreach (double i in (argumentos.MyProperty[0]))
+            //{
+            //    Console.WriteLine($"11element {i.ToString()}");
+            //}
+            //foreach (double i in (argumentos.MyProperty[1]))
+            //{
+            //    Console.WriteLine($"222element {i.ToString()}");
+            //}
+            // e.Handled = false;
         }
 
         private void OnImageInsertSelect(object sender, RoutedEventArgs e)

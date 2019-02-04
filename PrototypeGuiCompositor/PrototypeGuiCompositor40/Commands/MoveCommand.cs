@@ -36,7 +36,7 @@ namespace PrototypeGuiCompositor30
             Canvas.SetTop(_movedElement, _top);
             Canvas.SetLeft(_movedElement, _left);
 
-            Console.WriteLine($"move exec _top {_top} _left{_left} ");
+          //  Console.WriteLine($"move exec _top {_top} _left{_left} ");
         }
         public void Undo()
         {

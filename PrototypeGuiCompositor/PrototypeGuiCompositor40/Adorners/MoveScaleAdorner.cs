@@ -32,8 +32,21 @@ namespace PrototypeGuiCompositor30
             customControl = new MoveScaleAdornerVisual( );
             customControl.DataContext = _adornedElement;
             visualChildren.Add(customControl);
-
+            //AddHandler(MoveScaleAdornerVisual.MoveScaleRoutedEvent, new RoutedEventHandler(moveEvent));
+            //  MoveScaleAdornerVisual.MoveScaleRoutedEvent
+            //MoveScaleAdornerVisual.MoveScaleRoutedEvent += this.moveEvent;
+            //   MoveScaleAdornerVisual.MoveScale += moveEvent;
         }
+
+        //public void moveEvent(object sender, RoutedEventArgs e)
+        //{
+        //    Console.WriteLine($"chegou aqui ");
+        //    //foreach(double i in (e as MoveScaleRoutedEventArgs).MyProperty)
+        //    //{
+        //    //    Console.WriteLine($"element {i.ToString()}");
+        //    //}
+        //    e.Handled = false;
+        //}
 
         protected override Size ArrangeOverride(Size finalSize)
         {

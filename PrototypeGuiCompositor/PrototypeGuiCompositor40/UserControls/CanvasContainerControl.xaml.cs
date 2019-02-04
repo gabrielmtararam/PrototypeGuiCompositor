@@ -90,5 +90,6 @@ namespace PrototypeGuiCompositor30
                 CommandManager.AddCommand(comando);
             }
         }
+
     }
 }

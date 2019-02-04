@@ -15,13 +15,16 @@ namespace PrototypeGuiCompositor30
         FrameworkElement parentPanel;
         Canvas canvas;
         List<double> scaleBefore;
+        List<double> LastOne;
         List<double> result;
      
         public ScaleEventHandler(FrameworkElement _parentPanel, Canvas _canvas)
         {
             parentPanel = _parentPanel;
             canvas = _canvas;
-          
+            LastOne = new List<double>();
+            result = null;
+           
         }
 
 
@@ -199,19 +202,40 @@ namespace PrototypeGuiCompositor30
 
         }
 
-        public void OnDragDelta(object sender, DragDeltaEventArgs e)
+        public List<List<double>> OnDragDelta(object sender, DragDeltaEventArgs e)
         {
 
 
-            
+           // List<double> result2 = new List<double>();
+
             var s = sender as Thumb;
 
-             result= getNextScale(sender, e);
-            Canvas.SetTop(parentPanel, result[2]);
-            Canvas.SetLeft(parentPanel, result[3]);
+            //LastOne.Clear();
+            //if (result == null)
+            //{
+            //    LastOne = scaleBefore;
+            //}
+            //else
+            //{
+            //    foreach (double i in result)
+            //        LastOne.Add(i);
+            //}
+            result = getNextScale(sender, e);
+            // Canvas.SetTop(parentPanel, result[2]);
+            // Canvas.SetLeft(parentPanel, result[3]);
 
-            parentPanel.Height = result[0];
-            parentPanel.Width = result[1];
+            //   parentPanel.Height = result[0];
+            //   parentPanel.Width = result[1];
+            LastOne.Clear();
+            LastOne.Add(parentPanel.ActualHeight);
+            LastOne.Add(parentPanel.ActualWidth);
+            LastOne.Add(Canvas.GetTop(parentPanel));
+            LastOne.Add(Canvas.GetLeft(parentPanel));
+
+            List<List<double>> finalResult = new List<List<double>>();
+            finalResult.Add(result);
+            finalResult.Add(LastOne);
+            return finalResult;
 
         }
 

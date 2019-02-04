@@ -29,12 +29,15 @@ namespace PrototypeGuiCompositor30
         public void OnLoaded(object sender, RoutedEventArgs e) {
             DependencyObject _myCanvas = VisualTreeHelper.GetParent(this.DataContext as FrameworkElement);
             Canvas _myCanvasC = _myCanvas as Canvas;
-            Console.WriteLine($"canvas do data context {_myCanvas}");
+        //    Console.WriteLine($"canvas do data context {_myCanvas}");
             scaleEventHandler = new ScaleEventHandler(this.DataContext as FrameworkElement, _myCanvasC);
         }
-            private void OnDragDelta(object sender, DragDeltaEventArgs e)
+
+
+        private void OnDragDelta(object sender, DragDeltaEventArgs e)
         {
-            scaleEventHandler.OnDragDelta(sender, e);
+            List<List<double>> result =  scaleEventHandler.OnDragDelta(sender, e);
+            RaiseEvent(new MoveScaleRoutedEventArgs(MoveScaleAdornerVisual.MoveScaleRoutedEvent, sender,result));
         }
 
         private void OnDragStarted(object sender, DragStartedEventArgs e)
@@ -56,6 +59,32 @@ namespace PrototypeGuiCompositor30
 
             scaleEventHandler.Move_MouseLeave(sender, e);
         }
+
+
+
+
+        public static readonly RoutedEvent MoveScaleRoutedEvent =
+       EventManager.RegisterRoutedEvent(
+           "MoveScale",
+           RoutingStrategy.Bubble,
+           typeof(RoutedEventHandler),
+           typeof(MoveScaleAdornerVisual));
+
+        public event RoutedEventHandler MoveScale
+        {
+            add { AddHandler(MoveScaleRoutedEvent, value); }
+            remove { RemoveHandler(MoveScaleRoutedEvent, value); }
+        }
+    }
+
+    public class MoveScaleRoutedEventArgs : RoutedEventArgs
+    {
+        public MoveScaleRoutedEventArgs(RoutedEvent routedEvent, Object source, List<List<double>> result) : base(routedEvent, source)
+        {
+            MyProperty = result; ;
+
+        }
+        public List<List<double>> MyProperty { get; set; }
 
     }
 }

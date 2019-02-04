@@ -26,7 +26,9 @@ namespace PrototypeGuiCompositor30
         }
 
         public static readonly DependencyProperty IsSelectedProperty =
-            DependencyProperty.Register(" IsSelectedCCC", typeof(bool), typeof(CanvasContentControl), new PropertyMetadata(false));
+            DependencyProperty.Register(" IsSelectedCCC", typeof(bool), typeof(CanvasContentControl), new FrameworkPropertyMetadata(
+     false,
+     new PropertyChangedCallback(OnIsSelectedCCCPropertyChanged)));
 
         public object Content2
         {
@@ -61,8 +63,34 @@ namespace PrototypeGuiCompositor30
             DependencyProperty.Register("cccRotateAdorner", typeof(rotateAdorner), typeof(CanvasContentControl), new PropertyMetadata(null));
 
 
+        private static void OnIsSelectedCCCPropertyChanged(
+           DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            if ((sender as CanvasContentControl).IsSelectedCCC == true)
+            {
+              //  Console.WriteLine("here we are1");
+                DependencyObject _myCanvas = VisualTreeHelper.GetParent((sender as CanvasContentControl));
+                Canvas _myCanvasC = _myCanvas as Canvas;
+                AdornerLayer adornerLayer = AdornerLayer.GetAdornerLayer((sender as CanvasContentControl));
 
+                adornerLayer.Add((sender as CanvasContentControl).cccMoveScaleAdorner);
+                adornerLayer.Add((sender as CanvasContentControl).cccRotateAdorner);
 
+                //Console.WriteLine($"moved_element 2click  {(sender as CanvasContentControl).Name} adornerLayer  { adornerLayer.GetHashCode()}" +
+                //    $" CCC1  {(_myCanvasC.Children[0] as CanvasContentControl).GetHashCode()}" +
+                //    $" CCC2  { (_myCanvasC.Children[1] as CanvasContentControl).GetHashCode() }" +
+                //    $" adornerLayerccc1  { AdornerLayer.GetAdornerLayer((_myCanvas._myCanvasC[0] as CanvasContentControl)).GetHashCode()}" +
+                //    $" adornerLayerccc2 { AdornerLayer.GetAdornerLayer((_myCanvas._myCanvasC[1] as CanvasContentControl)).GetHashCode()}"
+
+                //    );
+            }
+            else
+            {
+                AdornerLayer adornerLayer = AdornerLayer.GetAdornerLayer(sender as CanvasContentControl);
+                adornerLayer.Remove((sender as CanvasContentControl).cccMoveScaleAdorner);
+                adornerLayer.Remove((sender as CanvasContentControl).cccRotateAdorner);
+            }
+        }
 
         public void OnLoaded(object sender, RoutedEventArgs e)
         {
@@ -73,7 +101,7 @@ namespace PrototypeGuiCompositor30
 
             mouseEventHandler = new MouseEventHandler(_myCanvasC);
             _myCanvasC.PreviewMouseLeftButtonDown += mouseEventHandler.MyCanvas_PreviewMouseLeftButtonDown;
-            _myCanvasC.PreviewMouseMove += mouseEventHandler.MyCanvas_PreviewMouseMove;
+           _myCanvasC.PreviewMouseMove += PreviewMouseMove;
             _myCanvasC.PreviewMouseLeftButtonUp += mouseEventHandler.MyCanvas_PreviewMouseLeftButtonUp;
             PreviewKeyDown += mouseEventHandler.window1_PreviewKeyDown;
 
@@ -104,12 +132,18 @@ namespace PrototypeGuiCompositor30
 
         }
 
+        public void PreviewMouseMove(Object sender, MouseEventArgs e)
+        {
+           List<List<double>> result= mouseEventHandler.MyCanvas_PreviewMouseMove(sender,e);
+            RaiseEvent(new MoveRoutedEventArgs(CanvasContentControl.MoveRoutedEvent, sender, result));
+        }
         public CanvasContentControl()
         {
             InitializeComponent();
             this.IsSelectedCCC = false;
-           
+
         }
+
         public void Move_MouseEnter(object sender, MouseEventArgs e)
         {
            
@@ -120,5 +154,30 @@ namespace PrototypeGuiCompositor30
            
             mouseEventHandler.Move_MouseLeave(sender, e);
         }
+
+
+        public static readonly RoutedEvent MoveRoutedEvent =
+               EventManager.RegisterRoutedEvent(
+                   "Move",
+                   RoutingStrategy.Bubble,
+                   typeof(RoutedEventHandler),
+                   typeof(MoveScaleAdornerVisual));
+
+        public event RoutedEventHandler Move
+        {
+            add { AddHandler(MoveRoutedEvent, value); }
+            remove { RemoveHandler(MoveRoutedEvent, value); }
+        }
+    }
+
+    public class MoveRoutedEventArgs : RoutedEventArgs
+    {
+        public MoveRoutedEventArgs(RoutedEvent routedEvent, Object source, List<List<double>> result) : base(routedEvent, source)
+        {
+            MyProperty = result; ;
+
+        }
+        public List<List<double>> MyProperty { get; set; }
+
     }
 }
